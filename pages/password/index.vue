@@ -11,10 +11,10 @@
             <h1>Modo de visualização</h1>
           </v-list-tile>
           <v-list-tile>
-            <v-radio label="Ícones" value="icones"></v-radio>
+            <v-radio label="Ícones" value="icones" color="#FFFFFF"></v-radio>
           </v-list-tile>
           <v-list-tile>
-            <v-radio label="Lista" value="lista"></v-radio>            
+            <v-radio label="Lista" value="lista" color="#FFFFFF"></v-radio>            
           </v-list-tile>
         </v-radio-group>
       </v-list>
