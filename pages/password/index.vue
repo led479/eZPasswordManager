@@ -28,13 +28,18 @@
         <v-icon>add</v-icon>
       </v-btn>
     </v-toolbar>
-    <h1 v-if="$store.state.modoVisualizacao == 'icones'">Visão por icones</h1>
-    <h1 v-else>Visão em lista</h1>
+    <icones v-if="$store.state.modoVisualizacao == 'icones'"></icones>
+    <lista v-else></lista>
 </v-layout>
 </template>
 
 <script>
+import Icones from '~/components/Icones.vue'
+import Lista from '~/components/Lista.vue'
+
+
 export default {
+  components: { Icones, Lista },
   watch: {
     modoVisualizacao() {
       if (this.modoVisualizacao == 'icones') {
