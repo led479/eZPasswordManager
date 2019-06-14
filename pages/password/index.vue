@@ -1,5 +1,5 @@
 <template>
-<v-layout column justify-center align-center>
+  <div>
     <v-navigation-drawer
       v-model="drawer"
       fixed
@@ -28,9 +28,9 @@
         <v-icon>add</v-icon>
       </v-btn>
     </v-toolbar>
-    <icones v-if="$store.state.modoVisualizacao == 'icones'"></icones>
+    <icones v-if="$store.state.modoVisualizacao == 'icones'" :senhas="senhas"></icones>
     <lista v-else></lista>
-</v-layout>
+  </div>
 </template>
 
 <script>
@@ -54,6 +54,32 @@ export default {
       modoVisualizacao: this.$store.state.modoVisualizacao,
       drawer: false,
       title: 'eZ Password Manager',
+      senhas: [
+        {
+          icone: 'facebook',
+          nome: 'Facebook',
+          senha: 'abc1234',
+          anotacoes: 'Esta é a minha senha do facebook'
+        },
+        {
+          icone: 'email',
+          nome: 'Gmail',
+          senha: 'abc1234',
+          anotacoes: 'Esta é a minha senha do facebook'
+        },
+        {
+          icone: 'netflix',
+          nome: 'Netflix',
+          senha: 'abc1234',
+          anotacoes: 'Esta é a minha senha do facebook'
+        },
+        {
+          icone: 'default',
+          nome: 'Moodle',
+          senha: 'abc1234',
+          anotacoes: 'Esta é a minha senha do facebook'
+        }
+      ]
     }
   }
 }
