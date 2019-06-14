@@ -36,10 +36,11 @@
 <script>
 import Icones from '~/components/Icones.vue'
 import Lista from '~/components/Lista.vue'
-
+import { mapState } from 'vuex'
 
 export default {
   components: { Icones, Lista },
+  computed: mapState(['senhaNova']),
   watch: {
     modoVisualizacao() {
       if (this.modoVisualizacao == 'icones') {
@@ -47,7 +48,19 @@ export default {
       } else {
         this.$store.commit('SET_MODO_VISUALIZACAO', 'lista')
       }
+    },
+    senhaNova(velha, nova) {
+      console.log('nova senha criada', this.nova)
+      this.senhas.push(this.senhaNova)
+    },
+    '$store.state.senhaNova'() {
+      console.log('nova senha criada', this.senhaNova)
+      this.senhas.push(this.$store.state.senhaNova)
     }
+
+  },
+  mounted() {
+    if (this.$store.state.senhaNova.nome != undefined) this.senhas.push(this.$store.state.senhaNova)
   },
   data() {
     return {
