@@ -1,75 +1,114 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">kk teste</v-card-title>
-        <v-card-text>eae men</v-card-text>
-        <nuxt-link to="/password">Password</nuxt-link>
-      </v-card>
-      <v-card>
-        <v-card-title class="headline"
-          >Welcome to the Vuetify + Nuxt.js template</v-card-title
-        >
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a href="https://vuetifyjs.com" target="_blank">documentation</a>.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat"
-              >discord</a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-              >issue board</a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br />
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank"
-            >Nuxt GitHub</a
-          >
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <div>
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+    >
+      <v-list>
+        <v-radio-group v-model="modoVisualizacao">
+          <v-list-tile>
+            <h1>Modo de visualização</h1>
+          </v-list-tile>
+          <v-list-tile>
+            <v-radio label="Ícones" value="icones" color="#FFFFFF"></v-radio>
+          </v-list-tile>
+          <v-list-tile>
+            <v-radio label="Lista" value="lista" color="#FFFFFF"></v-radio>            
+          </v-list-tile>
+        </v-radio-group>
+      </v-list>
+
+    </v-navigation-drawer>
+    <v-toolbar fixed app>
+      <v-toolbar-side-icon @click="drawer = !drawer" />
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-btn to="/new" class="text-none">
+        <v-icon small>add</v-icon>
+        &ensp;Adicionar
+      </v-btn>
+    </v-toolbar>
+    <icones 
+      v-if="$store.state.modoVisualizacao == 'icones'" :senhas="senhas"></icones>
+    <lista v-else></lista>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Icones from '~/components/Icones.vue'
+import Lista from '~/components/Lista.vue'
+import { mapState } from 'vuex'
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  components: { Icones, Lista },
+  computed: mapState(['senhaNova']),
+  watch: {
+    modoVisualizacao() {
+      if (this.modoVisualizacao == 'icones') {
+        this.$store.commit('SET_MODO_VISUALIZACAO', 'icones')
+      } else {
+        this.$store.commit('SET_MODO_VISUALIZACAO', 'lista')
+      }
+    },
+    senhaNova(velha, nova) {
+      console.log('nova senha criada', this.nova)
+      this.senhas.push(this.senhaNova)
+    },
+    '$store.state.senhaNova'() {
+      console.log('nova senha criada', this.senhaNova)
+      this.senhas.push(this.$store.state.senhaNova)
+    }
+
+  },
+  mounted() {
+    if (this.$store.state.senhaNova.nome != undefined) this.senhas.push(this.$store.state.senhaNova)
+  },
+  data() {
+    return {
+      modoVisualizacao: this.$store.state.modoVisualizacao,
+      drawer: false,
+      title: 'Pass',
+      senhas: [
+        {
+          id: 1,
+          icone: 'default',
+          nome: 'Net Virtua',
+          login: 'uepa@net.com.br',
+          senha: 'abc1234',
+          anotacoes: 'Esta é a minha senha da net vírtua, que é paga todo mes dia 15.'
+        },
+        {
+          id: 2,
+          icone: 'default',
+          nome: 'Vivo',
+          login: 'girafa123@eab.com',
+          senha: 'ine5614EPO',
+          anotacoes: 'Senha utilizada para pagar a conta do celular que vence todo mes dia 08.'
+        },
+        {
+          id: 3,
+          icone: 'default',
+          nome: 'Moodle',
+          login: 'exemplo.martins',
+          senha: 'abc1234',
+          anotacoes: ''
+        },
+        {
+          id: 4,
+          icone: 'netflix',
+          nome: 'Netflix',
+          login: 'abc@eab.com',
+          senha: 'abc1234',
+          anotacoes: ''
+        }
+      ]
+    }
+  },
+  methods: {
+    abreSenha(senha) {
+      this.$router.push(`/${senha.id}`)
+    }
   }
 }
 </script>

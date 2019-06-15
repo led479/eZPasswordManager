@@ -181,11 +181,11 @@ export default {
     salvaSenha() {
       this.senha.id = 5
       this.$store.commit('CRIA_SENHA_NOVA', this.senha) 
-      this.$router.push('/password')
+      this.$router.push('/')
       this.$toast.info('Senha salva com sucesso!', { duration: 5000 })
     },
     voltar(){
-      this.$router.push('/password')
+      this.$router.push('/')
     }
   }
 }

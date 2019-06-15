@@ -1,7 +1,7 @@
 <template>
   <v-layout justify-center align-center>
   <v-toolbar app>
-    <v-btn icon @click="$router.push('/password')">
+    <v-btn icon @click="$router.push('/')">
       <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-toolbar-title v-text="title" />
@@ -134,7 +134,7 @@ export default {
       this.exibeApagar = false
       this.$store.commit('CRIA_SENHA_NOVA', {}) 
       this.$toast.info('Senha apagada com sucesso!')
-      this.$router.push('/password')
+      this.$router.push('/')
     }
   }
 }
