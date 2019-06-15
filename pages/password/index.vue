@@ -68,39 +68,39 @@ export default {
     return {
       modoVisualizacao: this.$store.state.modoVisualizacao,
       drawer: false,
-      title: 'eZ Password Manager',
+      title: 'Pass',
       senhas: [
         {
           id: 1,
-          icone: 'facebook',
-          nome: 'Facebook',
-          login: 'abc@eab.com',
+          icone: 'default',
+          nome: 'Net Virtua',
+          login: 'uepa@net.com.br',
           senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          anotacoes: 'Esta é a minha senha da net vírtua, que é paga todo mes dia 15.'
         },
         {
           id: 2,
-          icone: 'email',
-          nome: 'Gmail',
-          login: 'abc@eab.com',
-          senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          icone: 'default',
+          nome: 'Vivo',
+          login: 'girafa123@eab.com',
+          senha: 'ine5614EPO',
+          anotacoes: 'Senha utilizada para pagar a conta do celular que vence todo mes dia 08.'
         },
         {
           id: 3,
+          icone: 'default',
+          nome: 'Moodle',
+          login: 'exemplo.martins',
+          senha: 'abc1234',
+          anotacoes: ''
+        },
+        {
+          id: 4,
           icone: 'netflix',
           nome: 'Netflix',
           login: 'abc@eab.com',
           senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
-        },
-        {
-          id: 4,
-          icone: 'default',
-          nome: 'Moodle',
-          login: 'abc@eab.com',
-          senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          anotacoes: ''
         }
       ]
     }

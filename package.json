@@ -13,8 +13,9 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/vuetify": "0.5.5",
     "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/toast": "^3.2.1",
+    "@nuxtjs/vuetify": "0.5.5",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

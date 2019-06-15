@@ -41,7 +41,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/vuetify', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/vuetify', '@nuxtjs/pwa', '@nuxtjs/toast'],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -57,6 +57,12 @@ export default {
       success: colors.green.accent3
     }
   },
+
+  toast: {
+    position: 'bottom-center'
+
+  },
+
   /*
    ** Build configuration
    */

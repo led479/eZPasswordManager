@@ -72,6 +72,22 @@
           <v-list-tile-content><v-list-tile-title>Instagram</v-list-tile-title></v-list-tile-content>
           <v-list-tile-action><v-icon>check_circle</v-icon></v-list-tile-action>
         </v-list-tile>
+        <v-list-tile @click="mudaIcone('Email')">
+          <v-list-tile-content>
+            <v-list-tile-title>Email</v-list-tile-title>
+            </v-list-tile-content>
+          <v-list-tile-action><v-icon>check_circle</v-icon></v-list-tile-action>
+        </v-list-tile>
+        <v-list-tile @click="mudaIcone('Netflix')">
+          <v-list-tile-content><v-list-tile-title>Netflix</v-list-tile-title></v-list-tile-content>
+          <v-list-tile-action><v-icon>check_circle</v-icon></v-list-tile-action>
+        </v-list-tile>
+        <v-list-tile @click="mudaIcone('Twitter')">
+          <v-list-tile-content>
+            <v-list-tile-title>Twitter</v-list-tile-title>
+            </v-list-tile-content>
+          <v-list-tile-action><v-icon>check_circle</v-icon></v-list-tile-action>
+        </v-list-tile>
         <v-list-tile @click="exibeAddNovoNome()">
           <v-list-tile-content><v-list-tile-title>Adicionar um nome</v-list-tile-title></v-list-tile-content>
           <v-list-tile-action><v-icon>add</v-icon></v-list-tile-action>
@@ -135,10 +151,10 @@ export default {
   },
   data() {
     return {
-      title: this.senha.id == undefined ? "Adicionando nova senha" : `Editando a senha ${this.senha.nome}`,
+      title: this.senha.id == undefined ? "Adicionar nova senha" : `Editar senha ${this.senha.nome}`,
       exibeLista: false,
       exibeAdicionarNome: false,
-      listaNomes: ['Facebook', 'Instagram'],
+      listaNomes: ['Facebook', 'Instagram', 'Email', 'Netflix', 'Twitter'],
       novoNome: '',
     }
   },
@@ -166,6 +182,7 @@ export default {
       this.senha.id = 5
       this.$store.commit('CRIA_SENHA_NOVA', this.senha) 
       this.$router.push('/password')
+      this.$toast.info('Senha salva com sucesso!', { duration: 5000 })
     },
     voltar(){
       this.$router.push('/password')

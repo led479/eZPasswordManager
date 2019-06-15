@@ -6,11 +6,11 @@
     </v-btn>
     <v-toolbar-title v-text="title" />
     <v-spacer />
-    <v-btn icon>
-      <v-icon>pencil</v-icon>
+    <v-btn class="text-none">
+      <v-icon small>create</v-icon>&ensp;Editar
     </v-btn>
-    <v-btn icon>
-      <v-icon>trash_can</v-icon>
+    <v-btn @click="abreConfirmarApagar" class="text-none">
+      <v-icon small>delete</v-icon>&ensp;Apagar
     </v-btn>
     
   </v-toolbar>
@@ -18,35 +18,56 @@
     <v-img
         style="margin: auto; vertical-align: middle"
         :src="require(`@/assets/images/${this.senha.icone}-icon.png`)"
-        height="80"
-        width="80"></v-img>
+        height="160"
+        width="160"></v-img>
       <br>
 
-      <h2>Login</h2>
-      <v-text-field
-        v-model="senha.login"
-        label="exemplo@exemplo.com"
-        single-line
-        prepend-icon="person"
-      ></v-text-field>
-      <br>
+      <div style="padding-bottom:20px">
+        <h2 style="padding-bottom:10px">Login</h2>
+        <big><v-icon>person</v-icon>  {{ senha.login }}</big>
+      </div>
 
-      <h2>Senha</h2>
-      <v-text-field
-        v-model="senha.senha"
-        label="senha-exemplo123"
-        single-line
-        prepend-icon="vpn_key"
-      ></v-text-field>
-      <br>
-
-      <h2>Anotações</h2>
-      <v-textarea 
-        v-model="senha.anotacoes"
-        label="Anotação exemplo..."
-        single-line>
-      </v-textarea>
+      <div style="padding-bottom:20px">
+        <h2 style="padding-bottom:10px">Senha</h2>
+        <big><v-icon>vpn_key</v-icon>  {{ senha.senha }}</big>
+        <v-icon style="float: right" @click="copiaSenha">content_copy</v-icon>
+      </div>
+      
+      <div v-if="this.senha.anotacoes != ''">
+        <h2 style="padding-bottom:10px">Anotações</h2>
+        <big>{{ senha.anotacoes }}</big>
+      </div>
+      
     </v-flex>
+    <v-dialog v-model="exibeApagar">
+       <v-card>
+        <v-card-title class="headline">Apagar senha</v-card-title>
+
+        <v-card-text>
+          Você realmente deseja apagar a senha {{ senha.nome }}?
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="exibeApagar = false"
+          >
+            Cancelar
+          </v-btn>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="apagaSenha"
+          >
+            Apagar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 
@@ -61,43 +82,60 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      exibeApagar: false,
       senha: {},
       title: '',
       senhas: [
         {
           id: 1,
-          icone: 'facebook',
-          nome: 'Facebook',
-          login: 'abc@eab.com',
+          icone: 'default',
+          nome: 'Net Virtua',
+          login: 'uepa@net.com.br',
           senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          anotacoes: 'Esta é a minha senha da net vírtua, que é paga todo mes dia 15.'
         },
         {
           id: 2,
-          icone: 'email',
-          nome: 'Gmail',
-          senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          icone: 'default',
+          nome: 'Vivo',
+          login: 'girafa123@eab.com',
+          senha: 'ine5614EPO',
+          anotacoes: 'Senha utilizada para pagar a conta do celular que vence todo mes dia 08.'
         },
         {
           id: 3,
+          icone: 'default',
+          nome: 'Moodle',
+          login: 'exemplo.martins',
+          senha: 'abc1234',
+          anotacoes: ''
+        },
+        {
+          id: 4,
           icone: 'netflix',
           nome: 'Netflix',
           login: 'abc@eab.com',
           senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
-        },
-        {
-          id: 4,
-          icone: 'default',
-          nome: 'Moodle',
-          login: 'abc@eab.com',
-          senha: 'abc1234',
-          anotacoes: 'Esta é a minha senha do facebook'
+          anotacoes: ''
         }
       ]
     }
     
+  },
+
+  methods: {
+    copiaSenha() {
+      this.$toast.info('Senha copiada para o clipboard.', { duration: 5000 })
+    },
+    abreConfirmarApagar() {
+      this.exibeApagar = true
+    },
+    apagaSenha() {
+      this.exibeApagar = false
+      this.$store.commit('CRIA_SENHA_NOVA', {}) 
+      this.$toast.info('Senha apagada com sucesso!')
+      this.$router.push('/password')
+    }
   }
 }
 </script>
