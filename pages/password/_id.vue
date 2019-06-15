@@ -1,13 +1,16 @@
 <template>
   <v-layout justify-center align-center>
   <v-toolbar app>
-    <v-btn icon>
+    <v-btn icon @click="$router.push('/password')">
       <v-icon>arrow_back</v-icon>
     </v-btn>
     <v-toolbar-title v-text="title" />
     <v-spacer />
     <v-btn icon>
-      <v-icon>save</v-icon>
+      <v-icon>pencil</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-icon>trash_can</v-icon>
     </v-btn>
     
   </v-toolbar>
@@ -17,20 +20,6 @@
         :src="require(`@/assets/images/${this.senha.icone}-icon.png`)"
         height="80"
         width="80"></v-img>
-      <br>
-      <h2>Ícone</h2>
-      <div>
-        <v-select
-          label="Aperte aqui para escolher..."
-          single-line
-          prepend-icon="apps"
-          style="pointer-events: none"
-          :items="listaNomes"
-          v-model="senha.nome"
-        ></v-select>
-      </div>
-      
-      <!-- <v-btn @click="dialog = true">Aperte aqui para escolher um nome...</v-btn> -->
       <br>
 
       <h2>Login</h2>
@@ -51,7 +40,7 @@
       ></v-text-field>
       <br>
 
-      <h2>Anotações (opcional)</h2>
+      <h2>Anotações</h2>
       <v-textarea 
         v-model="senha.anotacoes"
         label="Anotação exemplo..."
@@ -67,11 +56,13 @@ export default {
   created() {
     if (this.$store.state.senhaNova.nome != undefined) this.senhas.push(this.$store.state.senhaNova)
     this.senha = this.senhas.find(senha => senha.id == this.id)
+    this.title = this.senha.nome
   },
   data() {
     return {
       id: this.$route.params.id,
       senha: {},
+      title: '',
       senhas: [
         {
           id: 1,
