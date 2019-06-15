@@ -24,8 +24,9 @@
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn icon to="/password/new">
-        <v-icon>add</v-icon>
+      <v-btn to="/password/new" class="text-none">
+        <v-icon small>add</v-icon>
+        &ensp;Adicionar
       </v-btn>
     </v-toolbar>
     <icones 

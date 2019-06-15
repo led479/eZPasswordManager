@@ -6,8 +6,8 @@
     </v-btn>
     <v-toolbar-title v-text="title" />
     <v-spacer />
-    <v-btn icon @click="salvaSenha()">
-      <v-icon>save</v-icon>
+    <v-btn @click="salvaSenha()" class="text-none">
+      <v-icon small>save</v-icon>&ensp;Salvar
     </v-btn>
     
   </v-toolbar>
