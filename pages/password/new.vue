@@ -9,6 +9,7 @@
     <v-btn icon @click="salvaSenha()">
       <v-icon>save</v-icon>
     </v-btn>
+    
   </v-toolbar>
   <v-flex>
     <v-form>
@@ -134,7 +135,7 @@ export default {
   },
   data() {
     return {
-      title: "Adicionando nova senha",
+      title: this.senha.id == undefined ? "Adicionando nova senha" : `Editando a senha ${this.senha.nome}`,
       exibeLista: false,
       exibeAdicionarNome: false,
       listaNomes: ['Facebook', 'Instagram'],
@@ -162,8 +163,9 @@ export default {
       this.senha.icone = 'default'
     },
     salvaSenha() {
+      this.senha.id = 5
+      this.$store.commit('CRIA_SENHA_NOVA', this.senha) 
       this.$router.push('/password')
-      this.$nextTick(() => { this.$store.commit('CRIA_SENHA_NOVA', this.senha) })
     },
     voltar(){
       this.$router.push('/password')

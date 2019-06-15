@@ -28,7 +28,8 @@
         <v-icon>add</v-icon>
       </v-btn>
     </v-toolbar>
-    <icones v-if="$store.state.modoVisualizacao == 'icones'" :senhas="senhas"></icones>
+    <icones 
+      v-if="$store.state.modoVisualizacao == 'icones'" :senhas="senhas"></icones>
     <lista v-else></lista>
   </div>
 </template>
@@ -69,30 +70,43 @@ export default {
       title: 'eZ Password Manager',
       senhas: [
         {
+          id: 1,
           icone: 'facebook',
           nome: 'Facebook',
+          login: 'abc@eab.com',
           senha: 'abc1234',
           anotacoes: 'Esta é a minha senha do facebook'
         },
         {
+          id: 2,
           icone: 'email',
           nome: 'Gmail',
+          login: 'abc@eab.com',
           senha: 'abc1234',
           anotacoes: 'Esta é a minha senha do facebook'
         },
         {
+          id: 3,
           icone: 'netflix',
           nome: 'Netflix',
+          login: 'abc@eab.com',
           senha: 'abc1234',
           anotacoes: 'Esta é a minha senha do facebook'
         },
         {
+          id: 4,
           icone: 'default',
           nome: 'Moodle',
+          login: 'abc@eab.com',
           senha: 'abc1234',
           anotacoes: 'Esta é a minha senha do facebook'
         }
       ]
+    }
+  },
+  methods: {
+    abreSenha(senha) {
+      this.$router.push(`/password/${senha.id}`)
     }
   }
 }

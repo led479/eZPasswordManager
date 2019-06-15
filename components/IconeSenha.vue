@@ -1,12 +1,12 @@
 <template>
   <v-flex xs4>
-    <div style="text-align: center; padding-bottom: 18px">
+    <div style="text-align: center; padding-bottom: 18px" @click="abreSenha()">
       <v-img
         style="margin: auto; vertical-align: middle"
-        :src="require(`@/assets/images/${icone}-icon.png`)"
+        :src="require(`@/assets/images/${senha.icone}-icon.png`)"
         height="60"
         width="60"></v-img>
-      <span style="font-size: 17px">{{ nome }}</span>
+      <span style="font-size: 17px">{{ senha.nome }}</span>
     </div>
   </v-flex>
 </template>
@@ -16,16 +16,12 @@ export default {
   name: "icone-senha",
 
   props: {
-    nome: {
-      type: String,
-      required: true
-    },
-    icone: {
-      type: String,
-      required: true
-    },
-    senha: String,
-    anotacoes: String
+    senha: Object
+  },
+  methods: {
+    abreSenha(){
+      this.$parent.$parent.abreSenha(this.senha)
+    }
   }
 
 

@@ -3,10 +3,7 @@
     <icone-senha
       v-for="(item, idx) in senhas"
       :key="idx"
-      :icone="item.icone"
-      :nome="item.nome"
-      :senha="item.senha"
-      :anotacoes="item.anotacoes"></icone-senha>
+      :senha="item"></icone-senha>
   </v-layout>
 </template>
 
