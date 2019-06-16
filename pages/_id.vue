@@ -6,10 +6,10 @@
     </v-btn>
     <v-toolbar-title v-text="title" />
     <v-spacer />
-    <v-btn class="text-none">
+    <v-btn round light class="text-none">
       <v-icon small>create</v-icon>&ensp;Editar
     </v-btn>
-    <v-btn @click="abreConfirmarApagar" class="text-none">
+    <v-btn @click="abreConfirmarApagar" round light class="text-none">
       <v-icon small>delete</v-icon>&ensp;Apagar
     </v-btn>
     

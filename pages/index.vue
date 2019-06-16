@@ -24,7 +24,7 @@
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn to="/new" class="text-none">
+      <v-btn to="/new" round light class="text-none">
         <v-icon small>add</v-icon>
         &ensp;Adicionar
       </v-btn>
