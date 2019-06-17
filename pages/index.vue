@@ -31,7 +31,7 @@
     </v-toolbar>
     <icones 
       v-if="$store.state.modoVisualizacao == 'icones'" :senhas="senhas"></icones>
-    <lista v-else></lista>
+    <lista v-else :senhas="senhas"></lista>
   </div>
 </template>
 
